@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "ohm-js": "^17.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "test": "ava",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "ava": "^5.3.1"
+  },
+  "ava": {
+    "extensions": {
+      "ts": "module"
+    },
+    "nodeArguments": [
+      "--loader=ts-node/esm"
+    ]
+  }
+}
