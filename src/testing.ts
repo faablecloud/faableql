@@ -58,7 +58,6 @@ s.addAttribute("asMongo", {
 
 const query =
   "label:babies label:vegetarian label:vegan label:freeze label!:egg label:glucose";
-//const query = "label:babies";
 
 const match = faableQL.match(query);
 console.log(match);
