@@ -1,5 +1,6 @@
 import * as ohm from "ohm-js";
 import { Field } from "./Field";
+import { FaableQLError } from "./errors";
 
 const source = String.raw`
 FaableQL {
@@ -35,7 +36,7 @@ export const create_semantics = (valid_fields: Field[]) => {
       const token = name.asMongo;
       const field_def = valid_fields.find((f) => f.name == token);
       if (!field_def) {
-        throw new Error(`${token} is not a valid field to query`);
+        throw new FaableQLError(`${token} is not a valid field to query`);
       }
       const fieldname = field_def.db;
       return { [fieldname]: val };
