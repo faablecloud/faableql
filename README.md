@@ -2,6 +2,7 @@
   <a href="https://faable.com">
     <h1 align="center">FaableQL</h1>
   </a>
+  <p align="center">A small domain specific language to create simple MongoDB queries</p>
 </p>
 
 <p align="center">
@@ -10,12 +11,24 @@
   </a>
 </p>
 
-A small domain specific language to create simple MongoDB queries.
-
 Syntax:
 
 ```
 <field1>:<value> <field2>:<value>
+```
+
+## Install
+
+With NPM:
+
+```bash
+ npm install @faable/faableql
+```
+
+With Yarn:
+
+```bash
+ yarn add @faable/faableql
 ```
 
 ## Getting Started
