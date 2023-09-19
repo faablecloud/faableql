@@ -2,6 +2,8 @@ name: Release NPM Package
 on:
   push:
     branches: [main]
+env:
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 jobs:
   release:
     runs-on: ubuntu-latest
