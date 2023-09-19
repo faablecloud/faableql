@@ -1,0 +1,17 @@
+name: Release NPM Package
+on:
+  push:
+    branches: [main]
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "yarn"
+      - run: yarn install --frozen-lockfile
+      - name: Build Project
+        run: yarn run build
+      - run: yarn run release

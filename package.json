@@ -1,4 +1,15 @@
 {
+  "name": "@faablecloud/faableql",
+  "version": "0.0.0-development",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/faablecloud/faableql.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "restricted"
+  },
   "dependencies": {
     "ohm-js": "^17.1.0",
     "ts-node": "^10.9.1",
@@ -7,10 +18,12 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "test": "ava",
-    "build": "tsc"
+    "build": "tsc",
+    "release": "semantic-release"
   },
   "devDependencies": {
-    "ava": "^5.3.1"
+    "ava": "^5.3.1",
+    "semantic-release": "^22.0.0"
   },
   "ava": {
     "extensions": {
