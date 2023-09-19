@@ -33,5 +33,10 @@
     "nodeArguments": [
       "--loader=ts-node/esm"
     ]
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   }
 }
