@@ -14,7 +14,8 @@
 Syntax:
 
 ```
-<field1>:<value> <field2>:<value>
+Query = FieldTerm { whitespace FieldTerm }
+FieldTerm = name Operator value
 ```
 
 ## Install
@@ -86,4 +87,4 @@ Avaliable operators
 
 ## About
 
-FaableQL is inspired by [ShopifyQL](https://shopify.dev/docs/api/shopifyql) language
+FaableQL is inspired by [Shopify search syntax](https://shopify.dev/docs/api/usage/search-syntax) language
