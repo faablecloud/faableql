@@ -69,7 +69,7 @@ const mongodb_query = fql(query);
 }
 ```
 
-use `mongoose` to launch query and get results
+use `mongoose` to get results filtered by your query
 
 ```js
 const docs = await Model.find(mongodb_query);
@@ -83,3 +83,7 @@ Avaliable operators
 | -------- | ----------- | --------------------------- |
 | `:`      | Equal       | `{<db_field>:{$eq:<value>}` |
 | `!:`     | Not equal   | `{<db_field>:{$ne:<value>}` |
+
+## About
+
+FaableQL is inspired by [ShopifyQL](https://shopify.dev/docs/api/shopifyql) language
