@@ -29,3 +29,34 @@ test("multiple fields", (t) => {
     ],
   });
 });
+
+test("text", (t) => {
+  const query = faableQL("this is me");
+  t.deepEqual(query, {
+    $and: [
+      { $text: { $search: "this" } },
+      { $text: { $search: "is" } },
+      { $text: { $search: "me" } },
+    ],
+  });
+});
+
+test("text quoted", (t) => {
+  const query = faableQL('"this is me"');
+  t.deepEqual(query, {
+    $and: [{ $text: { $search: "this is me" } }],
+  });
+});
+
+test("text and labels", (t) => {
+  const query = faableQL("me label:babies this label:yes");
+  console.log(JSON.stringify(query, null, 2));
+  t.deepEqual(query, {
+    $and: [
+      { $text: { $search: "me" } },
+      { labels: "babies" },
+      { $text: { $search: "this" } },
+      { labels: "yes" },
+    ],
+  });
+});

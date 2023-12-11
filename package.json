@@ -32,16 +32,21 @@
     "release": "semantic-release"
   },
   "devDependencies": {
-    "ava": "^5.3.1",
+    "@ava/typescript": "^4.1.0",
+    "ava": "^6.0.1",
     "semantic-release": "^22.0.0"
   },
   "ava": {
-    "extensions": {
-      "ts": "module"
-    },
-    "nodeArguments": [
-      "--loader=ts-node/esm"
-    ]
+    "typescript": {
+      "extensions": [
+        "ts",
+        "tsx"
+      ],
+      "rewritePaths": {
+        "src/": "dist/"
+      },
+      "compile": "tsc"
+    }
   },
   "release": {
     "branches": [

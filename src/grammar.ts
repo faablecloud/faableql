@@ -4,7 +4,10 @@ import { FaableQLError } from "./errors";
 
 const source = String.raw`
 FaableQL {
-  Expr = FieldExpr+
+  Expr = (FieldExpr | TextExpr)+
+  TextExpr = simpletext | QuotedText
+  simpletext = alnum+
+  QuotedText = ("\"" alnum+ "\"")
   FieldExpr = field operator value
   operator = (eq | noteq)
   eq = ":"
@@ -40,6 +43,15 @@ export const create_semantics = (valid_fields: Field[]) => {
       }
       const fieldname = field_def.db;
       return { [fieldname]: val };
+    },
+    TextExpr(text) {
+      return { $text: { $search: text.asMongo } };
+    },
+    QuotedText(_, text, __) {
+      return text.sourceString;
+    },
+    simpletext(_) {
+      return this.sourceString;
     },
     field(_) {
       return this.sourceString;
