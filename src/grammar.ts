@@ -4,8 +4,8 @@ import { FaableQLError } from "./errors";
 
 const source = String.raw`
 FaableQL {
-  Expr = (FieldExpr | TextExpr)+
-  TextExpr = simpletext | QuotedText
+  Exp = FieldExpr* TextExpr?
+  TextExpr = simpletext+ | QuotedText
   simpletext = alnum+
   QuotedText = ("\"" alnum+ "\"")
   FieldExpr = field operator value
@@ -19,7 +19,14 @@ FaableQL {
 
 const grammar = ohm.grammar(source);
 
-export const create_semantics = (valid_fields: Field[]) => {
+export interface SemanticOptions {
+  searchLang: string;
+}
+
+export const create_semantics = (
+  valid_fields: Field[],
+  options: SemanticOptions
+) => {
   const s = grammar.createSemantics();
   s.addAttribute("asMongo", {
     FieldExpr(name, operator, value) {
@@ -45,7 +52,19 @@ export const create_semantics = (valid_fields: Field[]) => {
       return { [fieldname]: val };
     },
     TextExpr(text) {
-      return { $text: { $search: text.asMongo } };
+      return {
+        $text: {
+          $search: text.isIteration() ? text.asMongo.join(" ") : text.asMongo,
+          $language: options.searchLang,
+        },
+      };
+    },
+    Exp(fields, text) {
+      const merged = fields.children.map((e) => e?.asMongo);
+      return {
+        ...text.child(0)?.asMongo,
+        ...(merged.length > 0 && { $and: merged }),
+      };
     },
     QuotedText(_, text, __) {
       return text.sourceString;
@@ -60,7 +79,7 @@ export const create_semantics = (valid_fields: Field[]) => {
       return this.sourceString;
     },
     _iter(...child) {
-      return { $and: child.map((e) => e.asMongo) };
+      return child.map((e) => e.asMongo);
     },
     _terminal() {
       return this.sourceString;
