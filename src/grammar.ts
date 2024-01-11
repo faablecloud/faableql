@@ -12,8 +12,8 @@ FaableQL {
   operator = (eq | noteq)
   eq = ":"
   noteq = "!:"
-  field = letter+
-  value = letter+
+  field = (alnum|"_"|"-")+
+  value = (alnum|"_"|"-")+
 }
 `;
 
