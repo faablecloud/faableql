@@ -13,7 +13,7 @@ FaableQL {
   eq = ":"
   noteq = "!:"
   field = (alnum|"_"|"-")+
-  value = (alnum|"_"|"-")+
+  value = (alnum|"_"|"-"|"@"|".")+
 }
 `;
 
