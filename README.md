@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://faable.com">
-  <img src="docs/faableql-logo.png" title="FaableQL">
+  <img width=250 src="docs/faableql-logo.png" title="FaableQL">
   </a>
   <p align="center">FaableQL is a query syntax with MongoDB support</p>
 </p>
