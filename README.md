@@ -1,8 +1,8 @@
 <p align="center">
   <a href="https://faable.com">
-    <h1 align="center">FaableQL</h1>
+  <img src="docs/faableql-logo.png" title="FaableQL">
   </a>
-  <p align="center">A small domain specific language to create simple MongoDB queries</p>
+  <p align="center">FaableQL is a query syntax with MongoDB support</p>
 </p>
 
 <p align="center">
@@ -110,7 +110,3 @@ Avaliable operators
 | -------- | ----------- | ---------------------------- |
 | `:`      | Equal       | `{<db_field>:{$eq:<value>}}` |
 | `!:`     | Not equal   | `{<db_field>:{$ne:<value>}}` |
-
-## About
-
-FaableQL is inspired by [Shopify search syntax](https://shopify.dev/docs/api/usage/search-syntax) language
