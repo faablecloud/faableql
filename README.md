@@ -11,12 +11,31 @@
   </a>
 </p>
 
-Syntax:
+## Usage
 
+Convert the following FaableQL query `status:published order:created` to a valid mongodb query.
+
+```js
+const config = {...}
+const fql = create_faableql(config)
+const query = fql(`status:published type:article`)
 ```
-Query = FieldTerm { whitespace FieldTerm }
-FieldTerm = name Operator value
+
+results in.
+
+```json
+{
+  "$and": [
+    { "status": { "$eq": "published" } },
+    { "type": { "$eq": "article" } }
+  ]
+}
 ```
+
+Use cases:
+
+- As a cli flag. ie: `mycli --filter status:published`
+- To filter results in a single query param. ie: `GET /publications?q=status:published`
 
 ## Install
 
@@ -76,14 +95,21 @@ use `mongoose` to get results filtered by your query
 const docs = await Model.find(mongodb_query);
 ```
 
+## Syntax
+
+```
+Query = FieldTerm { whitespace FieldTerm }
+FieldTerm = name Operator value
+```
+
 ## Operators
 
 Avaliable operators
 
-| Operator | Description | MongoDB                     |
-| -------- | ----------- | --------------------------- |
-| `:`      | Equal       | `{<db_field>:{$eq:<value>}` |
-| `!:`     | Not equal   | `{<db_field>:{$ne:<value>}` |
+| Operator | Description | MongoDB                      |
+| -------- | ----------- | ---------------------------- |
+| `:`      | Equal       | `{<db_field>:{$eq:<value>}}` |
+| `!:`     | Not equal   | `{<db_field>:{$ne:<value>}}` |
 
 ## About
 
