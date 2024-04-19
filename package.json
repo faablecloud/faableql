@@ -20,7 +20,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@types/node": "^20.6.2",
     "ohm-js": "^17.1.0"
   },
   "scripts": {
@@ -30,6 +29,7 @@
     "release": "semantic-release"
   },
   "devDependencies": {
+    "@types/node": "^20.6.2",
     "@ava/typescript": "^4.1.0",
     "ava": "^6.0.1",
     "semantic-release": "^22.0.0",
