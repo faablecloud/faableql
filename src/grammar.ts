@@ -30,26 +30,31 @@ export const create_semantics = (
   const s = grammar.createSemantics();
   s.addAttribute("asMongo", {
     FieldExpr(name, operator, value) {
-      const ops = {
-        ":": "$eq",
-        "!:": "$ne",
-      };
-      const op = ops[operator.asMongo];
-      let val;
-      if (op == "$eq") {
-        val = value.asMongo;
-      } else {
-        val = { [op]: value.asMongo };
-      }
-
       // Valid field
       const token = name.asMongo;
       const field_def = valid_fields.find((f) => f.name == token);
       if (!field_def) {
         throw new FaableQLError(`${token} is not a valid field to query`);
       }
+
+      const ops = {
+        ":": "$eq",
+        "!:": "$ne",
+      };
+      const op = ops[operator.asMongo];
+
+      const set_value = field_def.cast
+        ? field_def.cast(value.asMongo)
+        : value.asMongo;
+      let mdb_operator;
+      if (op == "$eq") {
+        mdb_operator = set_value;
+      } else {
+        mdb_operator = { [op]: set_value };
+      }
+
       const fieldname = field_def.db;
-      return { [fieldname]: val };
+      return { [fieldname]: mdb_operator };
     },
     TextExpr(text) {
       return {
