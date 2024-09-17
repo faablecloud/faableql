@@ -1,4 +1,4 @@
-import * as ohm from "ohm-js";
+import { grammar } from "ohm-js";
 import { Field } from "./Field";
 import { FaableQLError } from "./errors";
 
@@ -17,7 +17,7 @@ FaableQL {
 }
 `;
 
-const grammar = ohm.grammar(source);
+const grm = grammar(source);
 
 export interface SemanticOptions {
   searchLang: string;
@@ -27,7 +27,7 @@ export const create_semantics = (
   valid_fields: Field[],
   options: SemanticOptions
 ) => {
-  const s = grammar.createSemantics();
+  const s = grm.createSemantics();
   s.addAttribute("asMongo", {
     FieldExpr(name, operator, value) {
       // Valid field
@@ -90,5 +90,5 @@ export const create_semantics = (
       return this.sourceString;
     },
   } as any);
-  return { semantics: s, grammar };
+  return { semantics: s, grammar: grm };
 };
