@@ -1,6 +1,6 @@
-import { SemanticOptions, create_semantics } from "./grammar";
-import { Field } from "./Field";
-import { FaableQLError } from "./errors";
+import { SemanticOptions, create_semantics } from "./grammar.js";
+import { Field } from "./Field.js";
+import { FaableQLError } from "./errors.js";
 
 export const create_faableql =
   (valid_fields: Field[], options: SemanticOptions = { searchLang: "es" }) =>

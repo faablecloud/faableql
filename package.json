@@ -6,6 +6,7 @@
     "type": "git",
     "url": "https://github.com/faablecloud/faableql.git"
   },
+  "type": "module",
   "keywords": [
     "mongodb",
     "faableql",

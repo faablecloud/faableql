@@ -1,4 +1,4 @@
-import ohm from "ohm-js";
+import { grammar } from "ohm-js";
 
 const source = String.raw`
 FaableQL {
@@ -12,7 +12,7 @@ FaableQL {
 }
 `;
 
-const faableQL = ohm.grammar(source);
+const faableQL = grammar(source);
 
 console.log(faableQL);
 

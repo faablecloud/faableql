@@ -1,5 +1,5 @@
 import test from "ava";
-import { create_faableql } from "./faableql";
+import { create_faableql } from "./faableql.js";
 
 const faableQL = create_faableql([
   { name: "label", db: "labels" },

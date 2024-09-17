@@ -1,6 +1,6 @@
 import { grammar } from "ohm-js";
-import { Field } from "./Field";
-import { FaableQLError } from "./errors";
+import { Field } from "./Field.js";
+import { FaableQLError } from "./errors.js";
 
 const source = String.raw`
 FaableQL {

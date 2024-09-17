@@ -1,1 +1,1 @@
-export * from "./faableql";
+export * from "./faableql.js";
